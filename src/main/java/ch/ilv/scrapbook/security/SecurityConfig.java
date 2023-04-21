@@ -1,5 +1,6 @@
-package ch.ilv.m295.demoapp.security;
+package ch.ilv.scrapbook.security;
 
+import ch.ilv.scrapbook.security.AuthenticationRoleConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;

@@ -1,4 +1,4 @@
-package ch.ilv.m295.demoapp.security;
+package ch.ilv.scrapbook.security;
 
 public class Roles {
     public static final String Admin = "admin";

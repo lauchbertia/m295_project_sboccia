@@ -1,4 +1,4 @@
-package ch.ilv.m295.demoapp.security;
+package ch.ilv.scrapbook.security;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
