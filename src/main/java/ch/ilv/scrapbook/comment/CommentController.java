@@ -38,19 +38,19 @@ public class CommentController {
 
     @PostMapping("api/comment")
     @RolesAllowed(Roles.Admin)
-    public ResponseEntity<Comment> newDepartment(@Valid @RequestBody Comment comment) {
+    public ResponseEntity<Comment> newComment(@Valid @RequestBody Comment comment) {
         Comment savedComment = commentService.insertComment(comment);
         return new ResponseEntity<>(savedComment, HttpStatus.OK);
     }
 
-    @PutMapping("api/department/{id}")
+    @PutMapping("api/comment/{id}")
     @RolesAllowed(Roles.Admin)
-    public ResponseEntity<Comment> updateDepartment(@Valid @RequestBody Comment comment, @PathVariable Long id) {
+    public ResponseEntity<Comment> updateComment(@Valid @RequestBody Comment comment, @PathVariable Long id) {
         Comment savedComment = commentService.updateComment(comment, id);
         return new ResponseEntity<>(savedComment, HttpStatus.OK);
     }
 
-    @DeleteMapping("api/department/{id}")
+    @DeleteMapping("api/comment/{id}")
     @RolesAllowed(Roles.Admin)
     public ResponseEntity<MessageResponse> deleteComment(@PathVariable Long id) {
         try {
