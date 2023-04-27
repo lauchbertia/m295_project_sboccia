@@ -18,9 +18,7 @@ public class Scrapbook {
     @NotEmpty
     private String title;
 
-    @Column
-    @Size(max = 10)
-    @NotEmpty
+    @Column()
     private Integer rating;
 
     public Scrapbook() {

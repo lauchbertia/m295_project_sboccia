@@ -2,20 +2,27 @@ package ch.ilv.scrapbook.site;
 
 import ch.ilv.scrapbook.base.MessageResponse;
 import ch.ilv.scrapbook.dataaccess.EntityNotFoundException;
-import ch.ilv.scrapbook.rating.Rating;
-import ch.ilv.scrapbook.rating.RatingRepository;
+import ch.ilv.scrapbook.scrapbook.Scrapbook;
+import ch.ilv.scrapbook.scrapbook.ScrapbookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SiteService {
     private final SiteRepository repository;
-    public SiteService(SiteRepository repository) {
+    private final ScrapbookRepository scrapbookRepository;
+
+    public SiteService(SiteRepository repository, ScrapbookRepository scrapbookRepository) {
         this.repository = repository;
+        this.scrapbookRepository = scrapbookRepository;
     }
     public List<Site> getSites() {
         return repository.findAll();
+    }
+    public List<Site> getSitesByScrapbook(Long scrapbook_id) {
+        return repository.findByScrapbook(scrapbookRepository.findById(scrapbook_id).get());
     }
 
     public Site getSite(Long id) {

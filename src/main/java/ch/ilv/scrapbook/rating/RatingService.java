@@ -15,7 +15,7 @@ public class RatingService {
     }
 
     public List<Rating> getRatings() {
-        return repository.findAll();
+        return repository.findByOrderByStarsAsc();
     }
 
     public Rating getRating(Long id) {

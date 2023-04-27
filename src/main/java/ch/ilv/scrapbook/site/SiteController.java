@@ -29,12 +29,18 @@ public class SiteController {
         List<Site> result = siteService.getSites();
         return new ResponseEntity<> (result, HttpStatus.OK);
     }
-    @GetMapping("api/site/{id}")
+    @GetMapping("api/site/{scrapbook_id}")
+    @RolesAllowed(Roles.Read)
+    public ResponseEntity<List<Site>> all(@PathVariable Long scrapbook_id) {
+        List<Site> result = siteService.getSitesByScrapbook(scrapbook_id);
+        return new ResponseEntity<> (result, HttpStatus.OK);
+    }
+    /*@GetMapping("api/site/{id}")
     @RolesAllowed(Roles.Read)
     public ResponseEntity<Site> one(@PathVariable Long id) {
         Site site = siteService.getSite(id);
         return new ResponseEntity<>(site, HttpStatus.OK);
-    }
+    }*/
 
     @PostMapping("api/site")
     @RolesAllowed(Roles.Admin)
