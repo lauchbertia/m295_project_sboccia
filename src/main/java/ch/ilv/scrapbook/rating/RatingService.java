@@ -1,7 +1,6 @@
 package ch.ilv.scrapbook.rating;
 
 import ch.ilv.scrapbook.base.MessageResponse;
-import ch.ilv.scrapbook.comment.Comment;
 import ch.ilv.scrapbook.dataaccess.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,6 @@ public class RatingService {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(id, Rating.class));
     }
-
     public Rating updateRating(Rating rating, Long id) {
         return repository.save(rating);
     }
@@ -32,7 +30,7 @@ public class RatingService {
     }
     public MessageResponse deleteRating(Long id) {
         repository.deleteById(id);
-        return new MessageResponse("Comment" + id + " deleted");
+        return new MessageResponse("Rating" + id + " deleted");
     }
 
 

@@ -20,42 +20,42 @@ import java.util.List;
 public class ScrapbookController {
     private final ScrapbookService scrapbookService;
 
-    ScrapbookController(ScrapbookService commentService) {
-        this.commentService = commentService;
+    ScrapbookController(ScrapbookService scrapbookService) {
+        this.scrapbookService = scrapbookService;
     }
 
-    @GetMapping("api/comments")
+    @GetMapping("api/scrapbook")
     @RolesAllowed(Roles.Read)
     public ResponseEntity<List<Scrapbook>> all() {
-        List<Scrapbook> result = commentService.getScrapbooks();
+        List<Scrapbook> result = scrapbookService.getScrapbooks();
         return new ResponseEntity<> (result, HttpStatus.OK);
     }
-    @GetMapping("api/comment/{id}")
+    @GetMapping("api/scrapbook/{id}")
     @RolesAllowed(Roles.Read)
     public ResponseEntity<Scrapbook> one(@PathVariable Long id) {
-        Scrapbook comment = commentService.getScrapbook(id);
-        return new ResponseEntity<>(comment, HttpStatus.OK);
+        Scrapbook scrapbook = scrapbookService.getScrapbook(id);
+        return new ResponseEntity<>(scrapbook, HttpStatus.OK);
     }
 
-    @PostMapping("api/comment")
+    @PostMapping("api/scrapbook")
     @RolesAllowed(Roles.Admin)
-    public ResponseEntity<Scrapbook> newScrapbook(@Valid @RequestBody Scrapbook comment) {
-        Scrapbook savedScrapbook = scrapbookService.insertScrapbook(comment);
+    public ResponseEntity<Scrapbook> newScrapbook(@Valid @RequestBody Scrapbook scrapbook) {
+        Scrapbook savedScrapbook = scrapbookService.insertScrapbook(scrapbook);
         return new ResponseEntity<>(savedScrapbook, HttpStatus.OK);
     }
 
-    @PutMapping("api/comment/{id}")
+    @PutMapping("api/scrapbook/{id}")
     @RolesAllowed(Roles.Admin)
-    public ResponseEntity<Scrapbook> updateScrapbook(@Valid @RequestBody Scrapbook comment, @PathVariable Long id) {
-        Scrapbook savedScrapbook = commentService.updateScrapbook(comment, id);
+    public ResponseEntity<Scrapbook> updateScrapbook(@Valid @RequestBody Scrapbook scrapbook, @PathVariable Long id) {
+        Scrapbook savedScrapbook = scrapbookService.updateScrapbook(scrapbook, id);
         return new ResponseEntity<>(savedScrapbook, HttpStatus.OK);
     }
 
-    @DeleteMapping("api/comment/{id}")
+    @DeleteMapping("api/scrapbook/{id}")
     @RolesAllowed(Roles.Admin)
     public ResponseEntity<MessageResponse> deleteScrapbook(@PathVariable Long id) {
         try {
-            return ResponseEntity.ok(commentService.deleteScrapbook(id));
+            return ResponseEntity.ok(scrapbookService.deleteScrapbook(id));
         } catch (Throwable t) {
             return ResponseEntity.internalServerError().build();
         }
