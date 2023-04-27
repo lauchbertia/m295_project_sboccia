@@ -23,7 +23,7 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("api/comments")
+    @GetMapping("api/comment")
     @RolesAllowed(Roles.Read)
     public ResponseEntity <List<Comment>> all() {
         List<Comment> result = commentService.getComments();

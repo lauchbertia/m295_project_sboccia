@@ -1,9 +1,7 @@
 package ch.ilv.scrapbook.site;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import ch.ilv.scrapbook.scrapbook.Scrapbook;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -15,10 +13,23 @@ public class Site {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(nullable = false)
-    @Size(max = 255)
+    @Size(max = 25)
     @NotEmpty
-    private String name;
+    private String title;
+
+    @Column
+    @NotEmpty
+    @Size(max = 2500)
+    private String content;
+
+    @Column
+    private String comment;
+
+    @ManyToOne
+    @JoinColumn(name = "scrapbook_id")
+    private Scrapbook scrapbook;
 
     public Site() {
     }

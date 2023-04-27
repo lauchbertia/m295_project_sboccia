@@ -1,9 +1,8 @@
 package ch.ilv.scrapbook.comment;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import ch.ilv.scrapbook.scrapbook.Scrapbook;
+import ch.ilv.scrapbook.site.Site;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -15,10 +14,14 @@ public class Comment {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(nullable = false)
-    @Size(max = 255)
     @NotEmpty
-    private String name;
+    private String content;
+
+    @OneToOne
+    @JoinColumn(name = "site_id")
+    private Site site;
 
     public Comment() {
     }

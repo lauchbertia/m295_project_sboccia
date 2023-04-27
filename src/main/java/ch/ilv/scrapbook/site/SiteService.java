@@ -15,7 +15,7 @@ public class SiteService {
         this.repository = repository;
     }
     public List<Site> getSites() {
-        return repository.findOrderByNameAsc();
+        return repository.findAll();
     }
 
     public Site getSite(Long id) {
@@ -24,7 +24,12 @@ public class SiteService {
     }
 
     public Site updateSite(Site site, Long id) {
-        return repository.save(site);
+        return repository.findById(id)
+                .map(siteOrig -> {
+                    siteOrig.setScrapbook(site.getScrapbook());
+                    return repository.save(siteOrig);
+                })
+                .orElseGet(() -> repository.save(site));
     }
 
     public Site insertSite(Site site) {

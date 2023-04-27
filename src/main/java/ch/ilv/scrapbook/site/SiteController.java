@@ -47,6 +47,7 @@ public class SiteController {
     @RolesAllowed(Roles.Admin)
     public ResponseEntity<Site> updateSite(@Valid @RequestBody Site site, @PathVariable Long id) {
         Site savedSite = siteService.updateSite(site, id);
+
         return new ResponseEntity<>(savedSite, HttpStatus.OK);
     }
 

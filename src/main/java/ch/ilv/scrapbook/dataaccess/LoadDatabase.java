@@ -1,6 +1,6 @@
 package ch.ilv.scrapbook.dataaccess;
 
-import ch.ilv.scrapbook.comment.CommentRepository;
+import ch.ilv.scrapbook.scrapbook.ScrapbookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -13,7 +13,7 @@ class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(CommentRepository repository) {
+    CommandLineRunner initDatabase(ScrapbookRepository repository) {
 
         return args -> {
             //log.info("Preloading " + repository.save(new Vehicle("BL 123456", null, VehicleType.CAR)));

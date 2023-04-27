@@ -17,7 +17,7 @@ public class CommentService {
         this.repository = repository;
     }
     public List<Comment> getComments() {
-      return repository.findOrderByNameAsc();
+      return repository.findAll();
     }
 
     public Comment getComment(Long id) {
@@ -32,7 +32,7 @@ public class CommentService {
     public Comment updateComment(Comment comment, Long id) {
         return repository.findById(id)
                 .map(commentOrig -> {
-                    commentOrig.setName(comment.getName());
+                    commentOrig.setContent(comment.getContent());
                     return repository.save(commentOrig);
                 })
                 .orElseGet(() -> repository.save(comment));

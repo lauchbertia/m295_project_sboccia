@@ -1,10 +1,7 @@
 package ch.ilv.scrapbook.rating;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotEmpty;
+import ch.ilv.scrapbook.scrapbook.Scrapbook;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -15,10 +12,14 @@ public class Rating {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(nullable = false)
-    @Size(max = 255)
-    @NotEmpty
-    private String name;
+    @Size(max = 10)
+    private int stars;
+
+    @OneToOne
+    @JoinColumn(name = "scrapbook_id")
+    private Scrapbook scrapbook;
 
     public Rating() {
     }

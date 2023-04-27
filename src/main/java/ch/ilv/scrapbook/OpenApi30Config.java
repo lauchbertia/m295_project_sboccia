@@ -1,4 +1,4 @@
-package ch.ilv.m295.demoapp;
+package ch.ilv.scrapbook;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;

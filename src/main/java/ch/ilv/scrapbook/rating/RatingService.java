@@ -15,7 +15,7 @@ public class RatingService {
     }
 
     public List<Rating> getRatings() {
-        return repository.findOrderByNameAsc();
+        return repository.findAll();
     }
 
     public Rating getRating(Long id) {
@@ -23,7 +23,13 @@ public class RatingService {
                 .orElseThrow(() -> new EntityNotFoundException(id, Rating.class));
     }
     public Rating updateRating(Rating rating, Long id) {
-        return repository.save(rating);
+        return repository.findById(id)
+                .map(ratingOrig -> {
+                    ratingOrig.setStars(rating.getStars());
+                    ratingOrig.setScrapbook(rating.getScrapbook());
+                    return repository.save(ratingOrig);
+                })
+                .orElseGet(() -> repository.save(rating));
     }
     public Rating insertRating(Rating rating) {
         return repository.save(rating);
