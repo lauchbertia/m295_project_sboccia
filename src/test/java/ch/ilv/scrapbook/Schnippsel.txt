@@ -1,0 +1,36 @@
+DB Test
+
+   /* @Test
+    void insertScrapbook() {
+        Scrapbook objScrapbook = this.scrapbookRepository.getScrapbook(new Scrapbook("EinName", 5));
+        Assertions.assertNotNull(objScrapbook.getId());
+    }
+
+    @Test
+    void getScrapbook() {
+        Long id = 5l;
+        Scrapbook objScrapbook = this.scrapbookRepository.findById(2l).get();
+        Assertions.assertNotNull(objScrapbook.getId());
+    }
+    @Test
+    void updateScrapbook() {
+        Long id = 2l;
+        Scrapbook objScrapbook = this.scrapbookRepository.findById(2l).get();
+        Scrapbook scrpb = this.scrapbookRepository.setTitle("title");
+        Assertions.assertEquals(scrpb.getId(), "title");
+
+        Scrapbook objBike = this.scrapbookRepository.save(new Scrapbook("ZweiNamen", 4));
+        Assertions.assertNotNull(objBike.getId());
+    }
+
+  @Test
+    void deleteScrapbook() {
+        Long id = 1l;
+        Optional<Scrapbook> objScrapbook = this.scrapbookRepository.findById(2l);
+        Assertions.assertNotNull(objScrapbook.get().getId());
+    }
+
+
+
+}
+        */

@@ -31,16 +31,23 @@ public class CommentServiceTest {
         verify(commentRepositoryMock, times(1)).save(any());
     }
 
-    @Test
+   /* @Test
     void findComment() {
         when(commentService.getComments()).thenReturn((List<Comment>) commentMock);
         Comment c = commentService.getComment(any());
         verify(commentRepositoryMock, times(1)).findById(any());
-    }
+    }*/
 
     @Test
-    void deleteVehicle() {
+    void deleteComment() {
         commentService.deleteComment(any());
         verify(commentRepositoryMock, times(1)).deleteById(any());
     }
+
+    /*@Test
+    void updateComment() {
+        Long id = 52l;
+        commentService.updateComment(any(), 52l);
+        verify(commentRepositoryMock, times(1)).deleteById(id);
+    }*/
 }

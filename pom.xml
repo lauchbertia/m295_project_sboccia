@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -72,6 +73,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.c4-soft.springaddons</groupId>
+			<artifactId>spring-security-oauth2-test-addons</artifactId>
+			<version>4.5.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<groupId>org.mockito</groupId>
+			<scope>test</scope>
+			<version>5.2.0</version>
 		</dependency>
 	</dependencies>
 

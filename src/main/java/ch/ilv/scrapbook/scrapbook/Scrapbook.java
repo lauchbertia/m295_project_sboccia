@@ -23,8 +23,11 @@ public class Scrapbook {
 
     public Scrapbook() {
     }
+
     public Scrapbook(String title, int rating) {
         this.title = title;
         this.rating = rating;
     }
+
+
 }

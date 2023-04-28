@@ -1,8 +1,11 @@
 package ch.ilv.scrapbook;
 
 import ch.ilv.scrapbook.scrapbook.Scrapbook;
+import ch.ilv.scrapbook.scrapbook.ScrapbookController;
 import ch.ilv.scrapbook.scrapbook.ScrapbookRepository;
+import ch.ilv.scrapbook.scrapbook.ScrapbookService;
 import org.junit.jupiter.api.*;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -18,6 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.client.RestTemplate;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -34,6 +38,9 @@ class RestControllerTests {
     @Autowired
     private MockMvc api;
 
+    @Mock
+    private ScrapbookController scrapbookController;
+    private ScrapbookService scrapbookService;
     @Autowired
     private ScrapbookRepository scrapbookRepository;
 
@@ -68,8 +75,6 @@ class RestControllerTests {
                 "scope=openid profile roles offline_access&" +
                 "username=user&" +
                 "password=12345";
-
-       
 
         HttpEntity<String> entity = new HttpEntity<>(body, headers);
 

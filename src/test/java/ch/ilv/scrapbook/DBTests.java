@@ -9,6 +9,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
+import java.util.Optional;
+
 @DataJpaTest()
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(false)
@@ -17,36 +19,26 @@ class DBTests {
     @Autowired
     private ScrapbookRepository scrapbookRepository;
 
-    @Test
-    void insertScrapbook() {
-        Scrapbook objCar = this.scrapbookRepository.save(new Scrapbook("EinName", 5));
-        Assertions.assertNotNull(objCar.getId());
-        Scrapbook objBike = this.scrapbookRepository.save(new Scrapbook("ZweiNamen", 4));
-        Assertions.assertNotNull(objBike.getId());
-    }
-
-   /* @Test
-    void readScrapbook() {
-        Scrapbook objCar = this.scrapbookRepository.findById(53);
-        Assertions.assertNotNull(objCar.getId());
-        Scrapbook objBike = this.scrapbookRepository.save(new Scrapbook("ZweiNamen", 4));
-        Assertions.assertNotNull(objBike.getId());
-    }
 
     @Test
-    void updateScrapbook() {
-        Scrapbook objCar = this.scrapbookRepository.findById(53);
-        Assertions.assertNotNull(objCar.getId());
-        Scrapbook objBike = this.scrapbookRepository.save(new Scrapbook("ZweiNamen", 4));
-        Assertions.assertNotNull(objBike.getId());
-    }
-    @Test
-    void deleteScrapbook() {
-        Scrapbook objCar = this.scrapbookRepository.delete();
-        Assertions.assertNotNull(objCar.getId());
-        Scrapbook objBike = this.scrapbookRepository.save(new Scrapbook("ZweiNamen", 4));
-        Assertions.assertNotNull(objBike.getId());
-    }*/
+    void CRUD() {
+        //CREATE
+        Scrapbook scrapbook = new Scrapbook();
+        scrapbook.setTitle("test");
+        scrapbook = this.scrapbookRepository.save(scrapbook);
+        Assertions.assertNotNull(scrapbook.getId());
 
+        //UPDATE
+        scrapbook.setTitle("testupdate");
+        scrapbook = this.scrapbookRepository.save(scrapbook);
+        Assertions.assertEquals("testupdate", scrapbook.getTitle());
+
+        //READ
+        Assertions.assertEquals(scrapbook.getTitle(), this.scrapbookRepository.findById(scrapbook.getId()).get().getTitle());
+
+        //DELETE
+        this.scrapbookRepository.deleteById(scrapbook.getId());
+        Assertions.assertEquals(this.scrapbookRepository.findById(scrapbook.getId()), Optional.empty());
+    }
 }
 
