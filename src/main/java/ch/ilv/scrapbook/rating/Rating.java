@@ -14,7 +14,6 @@ public class Rating {
     private Long id;
 
     @Column(nullable = false)
-    @Size(max = 10)
     private int stars;
 
     @OneToOne
